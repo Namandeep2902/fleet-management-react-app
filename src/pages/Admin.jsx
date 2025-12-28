@@ -6,7 +6,7 @@ const Admin = () => {
         {
             setFleets([...fleets, fleet]);
         };
-    constdeleteFleet = useCallback((id) =>
+    const deleteFleet = useCallback((id) =>
         {
             if(window.confirm("Delete?"))
             {

@@ -1,9 +1,9 @@
 import {useState, useRef, useEffect} from "react";
 import{useNavigate} from "react-router-dom";
 const Login = () => {
-    const [email, setaemail] = useState("");
+    const [email, setemail] = useState("");
     const [password, setPassword] = useState("");
-    constemailRef = useRef();
+    const emailRef = useRef();
     const navigate = useNavigate();
     useEffect(() => {
         emailRef.current.focus();
