@@ -1,31 +1,26 @@
-import {useState, useRef, useEffect} from "react";
-import{useNavigate} from "react-router-dom";
-const Login = () => {
-    const [email, setaemail] = useState("");
-    const [password, setPassword] = useState("");
-    constemailRef = useRef();
-    const navigate = useNavigate();
-    useEffect(() => {
-        emailRef.current.focus();
-    },[]);
-    const handleLogin = () =>
-    {
-        if(email === "admin@gmail.com" && password === "admin1234")
+import {useState, useCallback} from "react";
+import FleetCard from "../components/FleetCard";
+const Admin = () => {
+    const [fleets, setFleets] = useState([]);
+    const addFleet = (fleet) =>
         {
-            alert("Login Success");
-            localStorage.setItem("auth",true);
-            navigate("/admin");
-        }
-        else {
-            alert("Wrong Email or Password");
-        }
-    };
+            setFleets([...fleets, fleet]);
+        };
+    constdeleteFleet = useCallback((id) =>
+        {
+            if(window.confirm("Delete?"))
+            {
+                setFleets(prev => prev.filter(f => f.id !== id));
+            }
+        },[]);
+   
     return(
         <>
-        <input ref ={emailRef} value ={email} onChange={(e) => setemail(e.target.value)} />
-        <input type="password" value ={password} onChange={(e) => setPassword(e.target.value)} />
-        <button onClick={handleLogin}>Login</button>
+        {
+            fleets.map(fleet => (<FleetCard key ={fleet.id}
+            fleet={fleet} onDelete={deleteFleet}/>))
+        }
         </>
     );
     };
-export default Login;
+export default Admin;
